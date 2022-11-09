@@ -1,0 +1,79 @@
+### Invalid user registration - 1
+POST http://localhost:3000/v1/api/users
+Content-Type: application/json
+
+{
+}
+
+### Invalid user registration - 2
+POST http://localhost:3000/v1/api/users
+Content-Type: application/json
+
+{
+  "user": {
+    "username": "hirokimoto"
+  }
+}
+
+### Invalid user registration - 3
+POST http://localhost:3000/v1/api/users
+Content-Type: application/json
+
+{
+  "user": {
+    "username": "hirokimoto",
+    "email": "non-email-format"
+  }
+}
+
+### Invalid user registration - 4
+POST http://localhost:3000/v1/api/users
+Content-Type: application/json
+
+{
+  "user": {
+    "username": "hirokimoto",
+    "email": "hirokimoto@gmail.com"
+  }
+}
+
+### Invalid user registration - 5
+POST http://localhost:3000/v1/api/users
+Content-Type: application/json
+
+{
+  "user": {
+    "username": "hirokimoto",
+    "email": "hirokimoto@gmail.com",
+    "password": "1"
+  }
+}
+
+### Valid user registration
+POST http://localhost:3000/v1/api/users
+Content-Type: application/json
+
+{
+  "user": {
+    "username": "hirokimoto",
+    "email": "hirokimoto@gmail.com",
+    "password": "12345"
+  }
+}
+
+### Sign in
+POST http://localhost:3000/v1/api/users/login
+Content-Type: application/json
+
+{
+  "user": {
+    "email": "hirokimoto@gmail.com",
+    "password": "12345"
+  }
+}
+
+> {% client.global.set("auth_token", response.body.token); %}
+
+### Current user
+GET http://localhost:3000/v1/api/user/me
+Authorization: Bearer {{auth_token}}

@@ -1,0 +1,38 @@
+### Get auth token
+POST http://localhost:8080/v1/api/users/login
+Content-Type: application/json
+
+{
+  "user": {
+    "email": "user1@email.com",
+    "password": "user1"
+  }
+}
+
+> {% client.global.set("item_auth_token", response.body.token); %}
+
+### Save a item
+POST http://localhost:8080/v1/api/items
+Authorization: Bearer {{item_auth_token}}
+Content-Type: application/json
+
+{
+  "item": {
+    "title": "How to train your dragon",
+    "description": "Ever wonder how?",
+    "body": "You have to believe",
+    "tagList": ["reactjs", "angularjs", "dragons"]
+  }
+}
+
+### Get a item by slug
+GET http://localhost:8080/v1/api/items/how-to-train-your-dragon
+Content-Type: application/json
+
+### Get items
+GET http://localhost:8080/v1/api/items?tag=reactjs
+Content-Type: application/json
+
+### Delete a item
+DELETE http://localhost:8080/v1/api/items/how-to-train-your-dragon
+Authorization: Bearer {{item_auth_token}}

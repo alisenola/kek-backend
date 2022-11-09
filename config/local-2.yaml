@@ -1,0 +1,19 @@
+server:
+  port: 9090
+  timeoutSecs: 20
+  readTimeoutSecs: 25
+  writeTimeoutSecs: 25
+jwt:
+  secret: secret-key
+  sessionTime: 86400
+db:
+  dataSourceName: root:password@tcp(db)/local_db?charset=utf8&parseTime=True&multiStatements=true
+  migrate:
+    enable: false
+  pool:
+    maxOpen: 50
+    maxIdle: 5
+    maxLifetime: 86400
+metrics:
+  namespace: kek_server
+  subsystem:
